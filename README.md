@@ -26,8 +26,8 @@ $ mrt
   publish all "todos" so that the todos for all lists are available
   when offline.
 
-* Use ["new Offline.Collection" instead of "new Meteor.Collection](https://github.com/awwx/meteor-offline-todos/blob/master/client/todos.js#L4).
+* Use [`new Offline.Collection` instead of `new Meteor.Collection`](https://github.com/awwx/meteor-offline-todos/blob/master/client/todos.js#L4).
 
-* Use [Offline.subscribe instead of Meteor.subscribe](https://github.com/awwx/meteor-offline-todos/blob/master/client/todos.js#L25).
+* Use [`Offline.subscribe` instead of `Meteor.subscribe`](https://github.com/awwx/meteor-offline-todos/blob/master/client/todos.js#L25).
 
 * Subscribe to [all todos](https://github.com/awwx/meteor-offline-todos/blob/master/client/todos.js#L34).
