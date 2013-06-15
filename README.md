@@ -11,7 +11,8 @@ modified to use
 ```
 $ git clone git://github.com/awwx/meteor-offline-todos.git
 $ cd meteor-offline-todos
-$ mrt
+$ mrt install
+$ meteor
 ```
 
 
