@@ -1,0 +1,7 @@
+{
+  "public": {
+    "offlineData": {
+      "disableWorker": true
+    }
+  }
+}
