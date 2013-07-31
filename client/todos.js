@@ -1,5 +1,13 @@
 // Client-side JavaScript, bundled and sent to client.
 
+// OFFLINE: subscribe to lists and *all* todos (which allows the user
+// to switch between lists offline).
+
+Offline.subscriptions([
+  ["lists"],
+  ["todos"]
+]);
+
 // Define Minimongo collections to match server/publish.js.
 // OFFLINE: use offline collections.
 Lists = new Offline.Collection("lists");
@@ -20,20 +28,27 @@ Session.setDefault('editing_listname', null);
 // When editing todo text, ID of the todo
 Session.setDefault('editing_itemname', null);
 
-// Subscribe to 'lists' collection on startup.
 // Select a list once data has arrived.
-// OFFLINE: use an offline subscription.
-var listsHandle = Offline.subscribe('lists', function () {
-  if (!Session.get('list_id')) {
+// OFFLINE: check the subscription loaded status to find out if it's
+// ready.
+
+var listsLoaded = function () {
+  return Offline.subscriptionLoaded("lists");
+};
+
+var todosLoaded = function () {
+  return Offline.subscriptionLoaded("todos");
+};
+
+Deps.autorun(function (computation) {
+  if ((!Session.get('list_id')) && listsLoaded()) {
     var list = Lists.findOne({}, {sort: {name: 1}});
-    if (list)
+    if (list) {
       Router.setList(list._id);
+      computation.stop();
+    }
   }
 });
-
-// OFFLINE: subscribe to all todos (which allows the user to switch
-// between lists offline).
-var todosHandle = Offline.subscribe('todos');
 
 
 ////////// Helpers for in-place editing //////////
@@ -74,7 +89,7 @@ var activateInput = function (input) {
 ////////// Lists //////////
 
 Template.lists.loading = function () {
-  return !listsHandle.ready();
+  return !listsLoaded();
 };
 
 Template.lists.lists = function () {
@@ -134,7 +149,7 @@ Template.lists.editing = function () {
 ////////// Todos //////////
 
 Template.todos.loading = function () {
-  return todosHandle && !todosHandle.ready();
+  return !todosLoaded();
 };
 
 Template.todos.any_list_selected = function () {

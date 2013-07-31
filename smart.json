@@ -1,8 +1,5 @@
 {
   "packages": {
-    "offline-data": {
-      "git": "https://github.com/awwx/meteor-offline-data.git",
-      "tag": "v0.0.5"
-    }
+    "offline-data": "0.1.0"
   }
 }
