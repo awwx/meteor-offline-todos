@@ -1,7 +1,7 @@
 # Offline "todos" Example
 
 This is the
-[Meteor "todos" example](https://github.com/meteor/meteor/tree/release/0.6.4/examples/todos)
+[Meteor "todos" example](https://github.com/meteor/meteor/tree/release/0.6.5/examples/todos)
 modified to use
 [offline data](https://github.com/awwx/meteor-offline-data).
 
@@ -14,11 +14,6 @@ $ cd meteor-offline-todos
 $ mrt install
 $ meteor
 ```
-
-
-## Bugs
-
-* A [list isn't always selected automatically](https://github.com/awwx/meteor-offline-data/issues/7)
 
 
 ## Changes
